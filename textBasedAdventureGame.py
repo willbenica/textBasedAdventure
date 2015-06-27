@@ -14,14 +14,12 @@ def start():
     print "Welcome to Will's Adventure."
     print "Please enter your heroe's name."
 
-    name = raw_input("> ")
-    player_name = name.upper()
+    player_name = raw_input("> ").upper()
 
     print "Welcome %s!" % player_name
     print "Are you ready to begin?"
 
-    _ready = raw_input("> ")
-    ready = _ready.lower()
+    ready = raw_input("> ").lower
 
     if ready == "yes" or ready == "y":
         entrance()
