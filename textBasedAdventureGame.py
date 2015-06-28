@@ -41,7 +41,7 @@ zombie1 = {
 # Which rooms have enemies
 enemyRooms = {
     2: zombie1,
-    3: zombie2
+    # 3: zombie2
 }
 
 rocks1 = {
@@ -55,7 +55,7 @@ rocks_2 = {
     'name': 'Plain rocks',
     'decription': 'A plain pile of rocks, with something metallic sticking out.',
     'item': True,
-    'itemType': 'sword'
+    'itemType': 'sword',
     'whichItem': 'Illuminati Sword'
 }
 
@@ -72,7 +72,7 @@ def attack(enemy, rn):
 
 def search(item, rn):
     while item['item']:
-        if item[itemType] == 'sword':
+        if item['itemType'] == 'sword':
             player['sword'] = item['whichItem']
             player['swordDamage'] = swordDamages[player['sword']]
             item['item'] = False
@@ -111,7 +111,7 @@ def get_back(rn):
 
 
 def life(rn):
-    print player[1]
+    print player['life']
     get_back(rn)
 
 
@@ -121,22 +121,22 @@ def stats(rn):
     Life: \t\t%s
     Sword: \t\t%s
     Sword Damage: \t%s
-    """ % (player[0], player[1], player[2], player[3])
+    """ % (player['name'], player['life'], player['sword'], player['swordDamage'])
     get_back(rn)
 
 
 def main_hall():
     rn = 2
-    mh_enemy = enemies[0]
+    mh_enemy = enemyRooms[2]
     print "You have entered the main hall of the dragon's lair."
-    if mh_enemy[2] >= 0:
+    if mh_enemy['life'] >= 0:
         print "You see 2 rock piles strewn about, and running directly towards you is a zombie."
-        print 'ZOMBIE: "BRAAAAIIIIIINSsss, BRAAAAIIIIIINSsss!"'
-        print "\n" * 2
+        print '%s: "BRAAAAIIIIIINSsss, BRAAAAIIIIIINSsss!"' % mh_enemy['name']
+        print "\n"
         print "What do you do? Attack the zombie or search through the rocks?"
     else:
         print "You see 2 rock piles strewn about."
-        print "\n" * 2
+        print "\n"
         print "Would you like to search through the rocks?"
 
     while True:
@@ -162,7 +162,7 @@ def entrance():
     %s, you are standing at the entrance to the Dragon's lair.
     Ahead you will face a plethora of dangers.
     If you feel brave type "ready" to enter, or type "run away" to leave.
-    """ % player[0]
+    """ % player['name']
     print entrance_desciption
     while True:
         choice = raw_input("> ").lower()
@@ -179,7 +179,7 @@ def entrance():
 
 
 def restart():
-    print "%s, are you ready to begin?" % player[0]
+    print "%s, are you ready to begin?" % player['name']
     choice = raw_input("> ").lower()
     if choice == "yes" or choice == "y":
             entrance()
@@ -196,9 +196,9 @@ def start():
     print "Welcome to Dragon's Lair Adventure."
     print "Please enter your heroe's name."
 
-    player[0] = raw_input("> ").upper()
+    player['name'] = raw_input("> ").upper()
 
-    print "Welcome %s!" % player[0]
+    print "Welcome %s!" % player['name']
     print "Are you ready to begin?"
 
     choice = raw_input("> ").lower()
