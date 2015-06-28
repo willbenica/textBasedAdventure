@@ -6,39 +6,79 @@ We'll see if this works...
 """
 from sys import exit
 
-# dull sword = 5
-# sharp sword = 23
-# bastard sword = 42
-# magic sword = 100]
-# player = ['name', 'life', 'swordName', 'swordDamage', 'arrows', 'num_arrows', 'lavaBoots', 'airBoots', 'key1', 'key2']
-player = ['', 100, 'Dull Sword', 5, False, 0, False, False, False, False]
 
-# zombie = ['rn', 'name', 'life']
-zombie_2 = [2, 'Zed the Zombie', 10]
-enemies = [zombie_2, 'not defined']
+# Set up a hero who can then be modified
+player = {
+    'name': '',
+    'life':  100,
+    'sword': 'Dull Sword',
+    'swordDamage': 5,
+    'arrows': False,
+    'numArrows': 0,
+    'lavaBoots': False,
+    'airBoots': False,
+    'key1': False,
+    'key2': False
+}
 
-#rocks = ['isThere', 'Damage', 'isSword', 'playerIndex', 'gameText']
-rocks_2 = [True, 23, True, 3, 'Sharp Sword']
+# dict of all possible swords
+swordDamages = {
+    'Dull Sword': 5,
+    'Illuminati Sword': 23,
+    'Improbable Sword': 42,
+    'Hyrulian Sword': 100,
+}
+
+# Enemies
+zombie1 = {
+    'name': 'Zed the Zombie',
+    'life': 10,
+    'weapon': 'Gnashing Teeth',
+    'weaponDamage': 1
+
+}
+
+# Which rooms have enemies
+enemyRooms = {
+    2: zombie1,
+    3: zombie2
+}
+
+rocks1 = {
+    'name': 'Zed\'s Fridge',
+    'description': 'What looked like rocks from afar is really a pile of skulls and brains.',
+    'item': False,
+    'itemType': None,
+    'whichItem': None
+}
+rocks_2 = {
+    'name': 'Plain rocks',
+    'decription': 'A plain pile of rocks, with something metallic sticking out.',
+    'item': True,
+    'itemType': 'sword'
+    'whichItem': 'Illuminati Sword'
+}
 
 
 def attack(enemy, rn):
-    while enemy[2] >= 0:
-        enemy[2] -= player[3]
-        if enemy[2] >= 0:
-            print "The battle rages on! %s has %d life left." % (enemy[1], enemy[2])
+    while enemy['life'] >= 0:
+        enemy['life'] -= player['swordDamage']
+        if enemy['life'] >= 0:
+            print "The battle rages on! %s has %d life left." % (enemy['name'], enemy['life'])
         else:
-            print "You have vanquished %s!" % enemy[1]
+            print "You have vanquished %s!" % enemy['name']
     get_back(rn)
 
 
 def search(item, rn):
-    if item[0] and item[2]:
-        player[item[3]] = item[1]
-        player[item[2]] = item[4]
-        item[0] = False
-        print "You have found a/n: %s." % item[4]
-    else:
-        print "Nothing to see here, move along."
+    while item['item']:
+        if item[itemType] == 'sword':
+            player['sword'] = item['whichItem']
+            player['swordDamage'] = swordDamages[player['sword']]
+            item['item'] = False
+            print "You have found a/n: %s." % item['whichItem']
+        else:
+            print "Nothing to see here, move along."
     get_back(rn)
 
 
