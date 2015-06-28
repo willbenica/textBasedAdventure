@@ -195,7 +195,7 @@ def restart():
 
 def start():
     print "Welcome to Dragon's Lair Adventure."
-    print "Please enter your heroe's name."
+    print "Please enter your hero's name."
 
     player['name'] = raw_input("> ").upper()
 
