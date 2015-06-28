@@ -190,6 +190,7 @@ def restart():
         exit(0)
     else:
         print 'Please enter either "yes" or "no".'
+        restart()
 
 
 def start():
@@ -212,6 +213,7 @@ def start():
             exit(0)
         else:
             print 'Please enter either "yes" or "no".'
+            restart()
 
 
 def dead(reason):
