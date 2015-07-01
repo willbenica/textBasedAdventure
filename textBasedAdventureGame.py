@@ -46,14 +46,15 @@ enemyRooms = {
 
 rocks1 = {
     'name': 'Zed\'s Fridge',
-    'description': 'What looked like rocks from afar is really a pile of skulls and brains.',
+    'descriptionItemFalse': 'What looked like rocks from afar is really a pile of skulls and brains.',
     'item': False,
     'itemType': None,
     'whichItem': None
 }
-rocks_2 = {
+rocks2 = {
     'name': 'Plain rocks',
-    'decription': 'A plain pile of rocks, with something metallic sticking out.',
+    'descriptionItemTrue': 'A plain pile of rocks, with something metallic sticking out.',
+    'descriptionItemFalse': 'A plain pile of rocks.',
     'item': True,
     'itemType': 'sword',
     'whichItem': 'Illuminati Sword'
@@ -64,26 +65,34 @@ def attack(enemy, rn):
     while enemy['life'] >= 0:
         enemy['life'] -= player['swordDamage']
         if enemy['life'] >= 0:
-            print "The battle rages on! %s has %d life left." % (enemy['name'], enemy['life'])
+            print "The battle rages on! %s has %d life left.\n" % (enemy['name'], enemy['life'])
         else:
             print "You have vanquished %s!" % enemy['name']
     get_back(rn)
 
 
 def search(item, rn):
-    while item['item']:
-        if item['itemType'] == 'sword':
-            player['sword'] = item['whichItem']
-            player['swordDamage'] = swordDamages[player['sword']]
-            item['item'] = False
-            print "You have found a/n: %s." % item['whichItem']
-        else:
-            print "Nothing to see here, move along."
+    if item['item']:
+        print item['descriptionItemTrue'], "\n"
+        while item['item']:
+            if item['itemType'] == 'sword':
+                player['sword'] = item['whichItem']
+                player['swordDamage'] = swordDamages[player['sword']]
+                item['item'] = False
+                print "You have found a/n: %s.\n" % item['whichItem']
+            else:
+                print "Nothing to see here, move along.\n"
+    else:
+        print item['descriptionItemFalse'], "\n"
     get_back(rn)
 
 
 def get_back(rn):
-    if rn == 1:
+    if rn == -1:
+        restart()
+    elif rn == 0:
+        restart
+    elif rn == 1:
         entrance()
     elif rn == 2:
         main_hall()
@@ -115,6 +124,13 @@ def life(rn):
     get_back(rn)
 
 
+def instructos(rn):
+    print """
+    This is where the instrucions go.
+    """
+    get_back(rn)
+
+
 def stats(rn):
     print """
     Name: \t\t%s
@@ -130,7 +146,7 @@ def main_hall():
     mh_enemy = enemyRooms[2]
     print "You have entered the main hall of the dragon's lair."
     if mh_enemy['life'] >= 0:
-        print "You see 2 rock piles strewn about, and running directly towards you is a zombie."
+        print "You see 2 rock piles strewn about, and running directly towards you is a zombie.\n"
         print '%s: "BRAAAAIIIIIINSsss, BRAAAAIIIIIINSsss!"' % mh_enemy['name']
         print "\n"
         print "What do you do? Attack the zombie or search through the rocks?"
@@ -145,10 +161,16 @@ def main_hall():
             stats(rn)
         elif choice == "life":
             life(rn)
+        elif choice == "instructions":
+            instructos(rn)
         elif choice == "attack":
             attack(mh_enemy, rn)
         elif choice == "search":
-            search(rocks_2, rn)
+            whichItem = raw_input('Which pile of rocks would you like to search, the "big" or "small" pile?\n> ')
+            if whichItem == "big".lower():
+                search(rocks1, rn)
+            else:
+                search(rocks2, rn)
         elif choice == "more":
             get_back()
         else:
@@ -170,6 +192,8 @@ def entrance():
             stats(rn)
         elif choice == "life":
             life(rn)
+        elif choice == "i" or choice == "instructions":
+            instructos(rn)
         elif choice == "ready":
             main_hall()
         elif choice == "run away":
@@ -179,21 +203,29 @@ def entrance():
 
 
 def restart():
+    rn = 0
     print "%s, are you ready to begin?" % player['name']
     choice = raw_input("> ").lower()
     if choice == "yes" or choice == "y":
             entrance()
     elif choice == "no" or choice == "n":
-        print 'The sweet smell of adventure is calling! \nYou can exit the game by typing "exit".'
+        print 'The sweet smell of adventure is calling! \nYou can exit the game by typing "exit".\n'
         restart()
     elif choice == "exit":
         exit(0)
+    elif choice == "stats":
+            stats(rn)
+    elif choice == "life":
+            life(rn)
+    elif choice == "i" or choice == "instructions":
+        instructos(rn)
     else:
         print 'Please enter either "yes" or "no".'
         restart()
 
 
 def start():
+    rn = -1
     print "Welcome to Dragon's Lair Adventure."
     print "Please enter your hero's name."
 
@@ -211,6 +243,12 @@ def start():
             restart()
         elif choice == "exit":
             exit(0)
+        if choice == "stats":
+            stats(rn)
+        elif choice == "life":
+            life(rn)
+        elif choice == "i" or choice == "instructions":
+            instructos(rn)
         else:
             print 'Please enter either "yes" or "no".'
             restart()
