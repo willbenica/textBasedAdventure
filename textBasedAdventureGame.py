@@ -5,7 +5,8 @@ As part of an online course, I'm trying to create an Adventure-esque game.
 We'll see if this works...
 """
 from sys import exit
-
+import random
+import math
 
 # Set up a hero who can then be modified
 player = {
@@ -38,6 +39,27 @@ zombie1 = {
 
 }
 
+dwarf1 = {
+    'name': 'Leon the Large',
+    'life': 25,
+    'weapon': 'Dwarfish Sword',
+    'weaponDamage': 15
+}
+
+dwarf2 = {
+    'name': 'Dug the Dwarf',
+    'life': 25,
+    'weapon': 'Dwarfish Sword',
+    'weaponDamage': 15
+}
+
+dwarf3 = {
+    'name': 'Will the Dwarf Lad',
+    'life': 25,
+    'weapon': 'Dwarfish Sword',
+    'weaponDamage': 15
+}
+
 # Which rooms have enemies
 enemyRooms = {
     2: zombie1,
@@ -68,6 +90,21 @@ def attack(enemy, rn):
             print "The battle rages on! %s has %d life left.\n" % (enemy['name'], enemy['life'])
         else:
             print "You have vanquished %s!" % enemy['name']
+    get_back(rn)
+
+
+def attackEnemy(enemy, rn):
+    while player['life'] >= 0:
+        if math.floor(random.random() * 100) % 7:
+            print "%s is attacking." % enemy['name']
+            player['life'] -= enemy['weaponDamage']
+            if player['life'] >= 0:
+                print "The battle rages on! %s has %d life left.\n" % (player['name'], player['life'])
+            else:
+                print "%s has vanquished %s!" % (enemy['name'], player['name'])
+        else:
+            print "%s has attacked, you have perried masterfully. You return the attack." % enemy['name']
+            attack(enemy, rn)
     get_back(rn)
 
 
@@ -174,8 +211,8 @@ def main_hall():
         elif choice == "more":
             get_back()
         else:
-            print "I'm not done yet."
-            entrance()
+            print "Be more decisive, these are not nice monsters."
+            attackEnemy(mh_enemy, rn)
 
 
 def entrance():
