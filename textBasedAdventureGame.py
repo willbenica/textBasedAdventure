@@ -62,8 +62,8 @@ dwarf3 = {
 
 # Which rooms have enemies
 enemyRooms = {
-    2: zombie1,
-    # 3: zombie2
+    2: zombie1
+    # 3: dwarf3
 }
 
 rocks1 = {
@@ -133,8 +133,10 @@ def get_back(rn):
         entrance()
     elif rn == 2:
         main_hall()
-    # elif rn == 3:
-    #     west_wing()
+    elif rn == 3:
+        west_wing()
+    elif rn == 3.1:
+        left()
     # elif rn == 4:
     #     no_floor()
     # elif rn == 5:
@@ -190,7 +192,7 @@ def main_hall():
     else:
         print "You see 2 rock piles strewn about."
         print "\n"
-        print "Would you like to search through the rocks?"
+        print 'Would you like to "search" through the rocks?'
 
     while True:
         choice = raw_input("> ").lower()
@@ -200,9 +202,9 @@ def main_hall():
             life(rn)
         elif choice == "instructions":
             instructos(rn)
-        elif choice == "attack":
+        elif choice == "attack" or choice == "attack zombie":
             attack(mh_enemy, rn)
-        elif choice == "search":
+        elif choice == "search" or choice == "search rocks":
             whichItem = raw_input('Which pile of rocks would you like to search, the "big" or "small" pile?\n> ')
             if whichItem == "big".lower():
                 search(rocks1, rn)
@@ -213,6 +215,42 @@ def main_hall():
         else:
             print "Be more decisive, these are not nice monsters."
             attackEnemy(mh_enemy, rn)
+
+
+def left():
+    rn = 3.1
+    l_enemy = dwarf1
+
+    print "After opening the door, you see a dwarf who draws his sword."
+    print "%s: HUMANs MUST DIE!" % l_enemy['name']
+    attackEnemy(l_enemy, rn)
+
+
+def west_wing():
+    rn = 3
+    # ww_enemy1 = dwarf1
+    # ww_enemy2 = dwarf2
+    # ww_enemy3 = dwarf3
+
+    print "You have entered the West Wing."
+    print 'There are three doors. One on the "left", one on the "right" and one straight "ahead". Would you like to open one of the doors?'
+
+    while True:
+        choice = raw_input("> ").lower()
+        if choice == "stats":
+            stats(rn)
+        elif choice == "life":
+            life(rn)
+        elif choice == "instructions":
+            instructos(rn)
+        elif choice == "left":
+            left()
+        elif choice == "right":
+            right()
+        elif choice == "ahead":
+            ahead()
+        else:
+            print "you should really do something."
 
 
 def entrance():
