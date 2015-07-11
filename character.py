@@ -44,7 +44,7 @@ class Zombie(Character):
         self.life = int(self._life(factor))
 
     inventory = {
-        "weapon": "Teeth",
+        "weapon": "Gnashing Teeth",
         "item": None
     }
 
@@ -61,7 +61,7 @@ class Dwarf(Character):
         self.life = int(self._life(factor))
 
     inventory = {
-        "weapon": "Short Sword",
+        "weapon": "Dwarfish Sword",
         "item": None
     }
 
@@ -78,6 +78,6 @@ class Dragon(Character):
         self.life = int(self._life(factor))
 
     inventory = {
-        "weapon": "Breath",
+        "weapon": "Dragon Breath",
         "item": None
     }
