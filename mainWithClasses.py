@@ -202,9 +202,9 @@ def main_hall():
             life(rn)
         elif choice == "instructions":
             instructos(rn)
-        elif choice == "attack":
+        elif choice == "attack" or choice == "attack zombie":
             attack(mh_enemy, rn)
-        elif choice == "search":
+        elif choice == "search" or choice == "search rocks":
             whichItem = raw_input('Which pile of rocks would you like to search, the "big" or "small" pile?\n> ')
             if whichItem == "big".lower():
                 search(rocks1, rn)
