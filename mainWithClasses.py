@@ -192,6 +192,7 @@ def entrance():
             print "The GODS do not understand."
 
 
+# restart() function, used to restart after the player has already entered the game.
 def restart():
     rn = 0
     print "%s, are you ready to begin?" % player.name
@@ -213,7 +214,7 @@ def restart():
         print 'Please enter either "yes" or "no".'
         restart()
 
-
+# start() function, used to define the player's name.
 def start():
     rn = -1
     print "Welcome to Dragon's Lair Adventure."
