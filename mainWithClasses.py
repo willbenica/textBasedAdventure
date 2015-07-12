@@ -87,7 +87,7 @@ rocks2 = {
 
 def attack(enemy, rn):
     while enemy.life >= 0:
-        enemy.life -= player.weapon['damage']
+        enemy.life -= player.inventory['weapon']['damage']
         if enemy.life >= 0:
             print "The battle rages on! %s has %d life left.\n" % (enemy.name, enemy.life)
         else:
@@ -99,7 +99,7 @@ def attackEnemy(enemy, rn):
     while player.life >= 0:
         if math.floor(random.random() * 100) % 7:
             print "%s is attacking." % enemy.name
-            player.life -= enemy.weapon['damage']
+            player.life -= enemy.inventory['weapon']['damage']
             if player.life >= 0:
                 print "The battle rages on! %s has %d life left.\n" % (player.name, player.life)
             else:
@@ -115,7 +115,7 @@ def search(item, rn):
         print item['descriptionItemTrue'], "\n"
         while item['item']:
             if item['itemType'] == 'sword':
-                player.weapon = item['whichItem']
+                player.inventory['weapon'] = item['whichItem']
                 item['item'] = False
                 print "You have found a/n: %s.\n\t %s" % (item['whichItem']['name'], item['whichItem']['description'])
             else:
@@ -174,9 +174,9 @@ def stats(rn):
     Name: \t\t%s
     Life: \t\t%s
     Weapon: \t\t%s
-    Weapon Description: \t%s
+    Weapon Description: %s
     Weapon Damage: \t%s
-    """ % (player.name, player.life, player.weapon['name'], player.weapon['description'], player.weapon['damage'])
+    """ % (player.name, player.life, player.inventory['weapon']['name'], player.inventory['weapon']['description'], player.inventory['weapon']['damage'])
     get_back(rn)
 
 
