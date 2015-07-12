@@ -1,9 +1,11 @@
-# textBasedAdventure
-An Adventure-esque text-based game
+# Dragon's Lair Adventure
+An Adventure-esque, text-based game
+Written in python 2.7.x
 
-Written in python.
+### ToDo
 
-I'm still learning how to do things. If you want to add comments, please do.
+This was an initial proof of concept. It was only half thought out and not fully implemented. 
 
-I'm sure that a lot of this would be nicer with some dicts or some classes, haven't gotten that far yet.
-
+* Create more rooms
+    * there are only three _playable_ rooms, there should be a few more.
+* At the moment, there is only one enemy, even thogh there are classes for more enemies.
