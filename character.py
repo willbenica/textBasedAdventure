@@ -1,5 +1,7 @@
 # character.py
 
+import weapons
+
 
 class Character(object):
     """
@@ -25,7 +27,7 @@ class Player(Character):
     The base Player class gives the Player an inventory.
     """
     inventory = {
-        "weapon": "Dull Sword",
+        "weapon": weapons.weapons['Dull Sword'],
         "armor": "Leather Armor",
         "boots": "Leather Boots",
         "keys": None
@@ -44,7 +46,7 @@ class Zombie(Character):
         self.life = int(self._life(factor))
 
     inventory = {
-        "weapon": "Gnashing Teeth",
+        "weapon": weapons.weapons['Gnashing Teeth'],
         "item": None
     }
 
@@ -61,7 +63,7 @@ class Dwarf(Character):
         self.life = int(self._life(factor))
 
     inventory = {
-        "weapon": "Dwarfish Sword",
+        "weapon": weapons.weapons['Dwarfish Sword'],
         "item": None
     }
 
@@ -78,6 +80,6 @@ class Dragon(Character):
         self.life = int(self._life(factor))
 
     inventory = {
-        "weapon": "Dragon Breath",
+        "weapon": weapons.weapons['Dragon Breath'],
         "item": None
     }
