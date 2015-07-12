@@ -10,57 +10,8 @@ import weapons
 # Create a player which can be modified
 player = character.Player("")
 
-# {
-#     'name': '',
-#     'life':  100,
-#     'sword': 'Dull Sword',
-#     'swordDamage': 5,
-#     'arrows': False,
-#     'numArrows': 0,
-#     'lavaBoots': False,
-#     'airBoots': False,
-#     'key1': False,
-#     'key2': False
-# }
-
-# dict of all possible swords
-swordDamages = {
-    'Dull Sword': 5,
-    'Illuminati Sword': 23,
-    'Improbable Sword': 42,
-    'Hyrulian Sword': 100,
-}
-
 # Enemies
 zombie1 = character.Zombie('Zed the Zombie')
-
-# {
-#     'name': 'Zed the Zombie',
-#     'life': 10,
-#     'weapon': 'Gnashing Teeth',
-#     'weaponDamage': 1
-# }
-
-# dwarf1 = {
-#     'name': 'Leon the Large',
-#     'life': 25,
-#     'weapon': 'Dwarfish Sword',
-#     'weaponDamage': 15
-# }
-
-# dwarf2 = {
-#     'name': 'Dug the Dwarf',
-#     'life': 25,
-#     'weapon': 'Dwarfish Sword',
-#     'weaponDamage': 15
-# }
-
-# dwarf3 = {
-#     'name': 'Will the Dwarf Lad',
-#     'life': 25,
-#     'weapon': 'Dwarfish Sword',
-#     'weaponDamage': 15
-# }
 
 # Which rooms have enemies
 enemyRooms = {
