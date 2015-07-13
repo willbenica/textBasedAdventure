@@ -35,6 +35,6 @@ weapons = {
     'Dragon Breath': {
         'name': 'Dragon Breath',
         'damage': 33,
-        'description': 'The magical breath of a dragon. It melts metal and\nburns word. Water boils when a dragon breath near to it.'
+        'description': 'The magical breath of a dragon. It melts metal and\nburns wood. Water boils when a dragon breath near to it.'
     }
 }
