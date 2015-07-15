@@ -12,6 +12,9 @@ player = character.Player("")
 
 # Enemies
 zombie1 = character.Zombie('Zed the Zombie')
+# Test with this to see if the attack works:
+# zombie1 = character.Dwarf('Zed the Dwarf')
+# zombie1 = character.Dragon('Zed the Dragon')
 
 # Which rooms have enemies
 enemyRooms = {
@@ -36,29 +39,22 @@ rocks2 = {
 }
 
 
-def attack(enemy, rn):
-    while enemy.life >= 0:
-        enemy.life -= player.inventory['weapon']['damage']
-        if enemy.life >= 0:
-            print "The battle rages on! %s has %d life left.\n" % (enemy.name, enemy.life)
-        else:
-            print "You have vanquished %s!" % enemy.name
-    get_back(rn)
-
-
-def attackEnemy(enemy, rn):
-    while player.life >= 0:
-        if math.floor(random.random() * 100) % 7:
-            print "%s is attacking." % enemy.name
-            player.life -= enemy.inventory['weapon']['damage']
-            if player.life >= 0:
-                print "The battle rages on! %s has %d life left.\n" % (player.name, player.life)
-            else:
-                print "%s has vanquished %s!" % (enemy.name, player.name)
-        else:
-            print "%s has attacked, you have perried masterfully. You return the attack." % enemy.name
-            attack(enemy, rn)
-    get_back(rn)
+def attack(attacker, opponent, rn):
+    while opponent.life > 0 and attacker.life > 0:
+        opponent.life -= attacker.inventory['weapon']['damage']
+        print "%s attacks %s who has %d life left.\n..." % (attacker.name, opponent.name, opponent.life)
+        if opponent.life > 0:
+            attacker.life -= opponent.inventory['weapon']['damage']
+            print "%s attacks %s who has %d life left.\n..." % (opponent.name, attacker.name, attacker.life)
+    if attacker._type == 'PC' and opponent.life <= 0:
+            print "%s has been vanquished." % (opponent.name)
+            get_back(rn)
+    elif attacker._type == 'NPC' and attacker.life <= 0:
+        print "%s has been vanquished." % (attacker.name)
+        get_back(rn)
+    else:
+        reason = "%s: You have died in battle. You'll be remembered in Valhalla, but most likely no where else." % (attacker.name)
+        dead(reason)
 
 
 def search(item, rn):
@@ -154,7 +150,7 @@ def main_hall():
         elif choice == "instructions":
             instructos(rn)
         elif choice == "attack" or choice == "attack zombie":
-            attack(mh_enemy, rn)
+            attack(player, mh_enemy, rn)
         elif choice == "search" or choice == "search rocks":
             whichItem = raw_input('Which pile of rocks would you like to search, the "big" or "small" pile?\n> ')
             if whichItem == "big".lower():
@@ -165,7 +161,7 @@ def main_hall():
             get_back()
         else:
             print "Be more decisive, these are not nice monsters."
-            attackEnemy(mh_enemy, rn)
+            attack(mh_enemy, player, rn)
 
 
 def entrance():
@@ -214,6 +210,7 @@ def restart():
         print 'Please enter either "yes" or "no".'
         restart()
 
+
 # start() function, used to define the player's name.
 def start():
     rn = -1
@@ -247,6 +244,7 @@ def start():
 
 def dead(reason):
     print reason, "\n" * 10
+    player.life = 100
     start()
 
 start()
