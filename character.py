@@ -33,6 +33,8 @@ class Player(Character):
         "keys": None
     }
 
+    _type = "PC"
+
 
 class Zombie(Character):
     """
@@ -49,6 +51,8 @@ class Zombie(Character):
         "weapon": weapons.weapons['Gnashing Teeth'],
         "item": None
     }
+
+    _type = "NPC"
 
 
 class Dwarf(Character):
@@ -67,6 +71,8 @@ class Dwarf(Character):
         "item": None
     }
 
+    _type = "NPC"
+
 
 class Dragon(Character):
     """
@@ -83,3 +89,5 @@ class Dragon(Character):
         "weapon": weapons.weapons['Dragon Breath'],
         "item": None
     }
+
+    _type = "NPC"
