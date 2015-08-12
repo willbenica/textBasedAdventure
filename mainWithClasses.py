@@ -16,15 +16,14 @@ zombie1 = character.Zombie('Zed the Zombie')
 # Test with this to see if the attack works:
 # zombie1 = character.Dwarf('Zed the Dwarf')
 # zombie1 = character.Dragon('Zed the Dragon')
-zombie2 = character.Zombie('iAmASkeltonInAZombiesBody')
+skeleton1 = character.Skeleton('Bony Brian')
 
 # Which rooms have enemies
 enemyRooms = {
     2: zombie1,
     # 3: zombie2,
     # 7: dwarf1,
-    ## TODO: Define a Skeleton character to use in the lair_entrance()
-    10: zombie2
+    10: skeleton1
 }
 
 rocks1 = {
