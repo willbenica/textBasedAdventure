@@ -12,7 +12,6 @@ class Character(object):
         # super(Character, self).__init__()
         self.name = name
         self.factor = factor
-
         self.life = int(self._life(factor))
 
     def _life(self, factor):
@@ -68,6 +67,25 @@ class Dwarf(Character):
 
     inventory = {
         "weapon": weapons.weapons['Dwarfish Sword'],
+        "item": None
+    }
+
+    _type = "NPC"
+
+
+class Skeleton(Character):
+    """
+    This is the base class for Skeletons throughout the game.
+    Dwarves have a factor of .8 giving them 80 life.
+    """
+
+    def __init__(self, name, factor=0.8):
+        self.name = name
+        self.factor = factor
+        self.life = int(self._life(factor))
+
+    inventory = {
+        "weapon": weapons.weapons['Skeletal Sword'],
         "item": None
     }
 

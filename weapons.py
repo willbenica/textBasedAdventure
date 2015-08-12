@@ -32,6 +32,11 @@ weapons = {
         'damage': 15,
         'description': 'A beutifully inlaid sword, set with gems.'
     },
+    'Skeletal Sword': {
+        'name': 'Skeletal Sword',
+        'damage': 17,
+        'description': 'An old, rusty sword that has seen better days.\n Constant misuse has worn the edge dull, but it is quite jagged.'
+    },
     'Dragon Breath': {
         'name': 'Dragon Breath',
         'damage': 33,
