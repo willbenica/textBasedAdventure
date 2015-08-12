@@ -1,8 +1,9 @@
 # dragon_sLairWithClasses
 
 from sys import exit
-import random
-import math
+### TODO use random and math imports or get rid of them!
+# import random
+# import math
 
 import character
 import weapons
@@ -15,11 +16,15 @@ zombie1 = character.Zombie('Zed the Zombie')
 # Test with this to see if the attack works:
 # zombie1 = character.Dwarf('Zed the Dwarf')
 # zombie1 = character.Dragon('Zed the Dragon')
+zombie2 = character.Zombie('iAmASkeltonInAZombiesBody')
 
 # Which rooms have enemies
 enemyRooms = {
     2: zombie1,
-    # 3: zombie2
+    # 3: zombie2,
+    # 7: dwarf1,
+    ## TODO: Define a Skeleton character to use in the lair_entrance()
+    10: zombie2
 }
 
 rocks1 = {
@@ -46,15 +51,15 @@ def attack(attacker, opponent, rn):
         if opponent.life > 0:
             attacker.life -= opponent.inventory['weapon']['damage']
             print "%s attacks %s who has %d life left.\n..." % (opponent.name, attacker.name, attacker.life)
-    if attacker._type == 'PC' and opponent.life <= 0:
+        if attacker._type == 'PC' and opponent.life <= 0:
             print "%s has been vanquished." % (opponent.name)
             get_back(rn)
-    elif attacker._type == 'NPC' and attacker.life <= 0:
-        print "%s has been vanquished." % (attacker.name)
-        get_back(rn)
-    else:
-        reason = "%s: You have died in battle. You'll be remembered in Valhalla, but most likely no where else." % (attacker.name)
-        dead(reason)
+        elif attacker._type == 'NPC' and attacker.life <= 0:
+            print "%s has been vanquished." % (attacker.name)
+            get_back(rn)
+        elif attacker._type == 'NPC' and opponent.life <= 0:
+            reason = "%s: You have died in battle. You'll be remembered in Valhalla, but most likely nowhere else." % (attacker.name)
+            dead(reason)
 
 
 def search(item, rn):
@@ -95,8 +100,8 @@ def get_back(rn):
     #     lava_floor()
     # elif rn == 9:
     #     boss_room_east()
-    # elif rn == 10:
-    #     lair_entrance()
+    elif rn == 10:
+        lair_entrance()
     # elif rn == 11:
     #     dragon_lair()
     else:
@@ -127,11 +132,43 @@ def stats(rn):
     get_back(rn)
 
 
+### TODO: finish up this room, as there is still much to finsih.
+def lair_entrance():
+    rn = 10
+    le_enemy = enemyRooms[10]
+    print "You have entered the entrace to the dragon's lair.\nThe funk of death hangs thick in the air."
+    if le_enemy.life > 0:
+        print "You get attacked by %s" % le_enemy.name
+        attack(le_enemy, player, rn)
+    else:
+        print "What a beautiful room!"
+
+    while True:
+        choice = raw_input("> ").lower()
+        if choice == "stats":
+            stats(rn)
+        elif choice == "life":
+            life(rn)
+        elif choice == "instructions" or choice == "i":
+            instructos(rn)
+        elif choice == "attack" or choice == "attack zombie":
+            attack(player, le_enemy, rn)
+        elif choice == "move":
+            whichDirection = raw_input('Which direction would you like to move, "South", "East" or "West"?\n').lower()
+            if whichDirection == "south":
+                main_hall()
+            else:
+                print "Do you see any doors?"
+        else:
+            print "Be more decisive, these are not nice monsters."
+            attack(le_enemy, player, rn)
+
+
 def main_hall():
     rn = 2
     mh_enemy = enemyRooms[2]
     print "You have entered the main hall of the dragon's lair."
-    if mh_enemy.life >= 0:
+    if mh_enemy.life > 0:
         print "You see 2 rock piles strewn about, and running directly towards you is a zombie.\n"
         print '%s: "BRAAAAIIIIIINSsss, BRAAAAIIIIIINSsss!"' % mh_enemy.name
         print "\n"
@@ -147,7 +184,7 @@ def main_hall():
             stats(rn)
         elif choice == "life":
             life(rn)
-        elif choice == "instructions":
+        elif choice == "instructions" or choice == "i":
             instructos(rn)
         elif choice == "attack" or choice == "attack zombie":
             attack(player, mh_enemy, rn)
@@ -157,8 +194,12 @@ def main_hall():
                 search(rocks1, rn)
             else:
                 search(rocks2, rn)
-        elif choice == "more":
-            get_back()
+        elif choice == "move":
+            whichDirection = raw_input('Which direction would you like to move, "North", "East" or "West"?\n').lower()
+            if whichDirection == "north":
+                lair_entrance()
+            else:
+                print "Do you see any doors?"
         else:
             print "Be more decisive, these are not nice monsters."
             attack(mh_enemy, player, rn)
