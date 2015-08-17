@@ -43,6 +43,13 @@ rocks2 = {
 }
 
 
+def drop_item(npc):
+    if npc.inventory['item'] is not None & npc.life <= 0:
+        # need to generalize this to check which kind of item.
+        player.inventory['tonic'] = npc.inventory['item']
+        print "You have picked up a %s" % player.inventory['tonic']['name']
+
+
 def attack(attacker, opponent, rn):
     while opponent.life > 0 and attacker.life > 0:
         opponent.life -= attacker.inventory['weapon']['damage']
@@ -55,6 +62,8 @@ def attack(attacker, opponent, rn):
             get_back(rn)
         elif attacker._type == 'NPC' and attacker.life <= 0:
             print "%s has been vanquished." % (attacker.name)
+            # adding the drop_item() funciton here.
+            drop_item(attacker)
             get_back(rn)
         elif attacker._type == 'NPC' and opponent.life <= 0:
             reason = "%s: You have died in battle. You'll be remembered in Valhalla, but most likely nowhere else." % (attacker.name)

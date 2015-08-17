@@ -1,6 +1,7 @@
 # character.py
 
 import weapons
+import items
 
 
 class Character(object):
@@ -29,7 +30,8 @@ class Player(Character):
         "weapon": weapons.weapons['Dull Sword'],
         "armor": "Leather Armor",
         "boots": "Leather Boots",
-        "keys": None
+        "keys": None,
+        "tonic": None
     }
 
     _type = "PC"
@@ -86,7 +88,7 @@ class Skeleton(Character):
 
     inventory = {
         "weapon": weapons.weapons['Skeletal Sword'],
-        "item": None
+        "item": items.items['Health Tonic']
     }
 
     _type = "NPC"
