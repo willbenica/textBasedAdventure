@@ -12,4 +12,4 @@ This was an initial proof of concept. It was only half thought out and not fully
 
 * Create more rooms
     * there are only three _playable_ rooms, there should be a few more.
-* At the moment, there is only one enemy, even thogh there are classes for more enemies.
+* At the moment, there is only one enemy, even though there are classes for more enemies.
