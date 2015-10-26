@@ -58,15 +58,15 @@ def attack(attacker, opponent, rn):
             attacker.life -= opponent.inventory['weapon']['damage']
             print "%s attacks %s who has %d life left.\n..." % (opponent.name, attacker.name, attacker.life)
         if attacker._type == 'PC' and opponent.life <= 0:
-            print "%s has been vanquished." % (opponent.name)
+            print "%s has been vanquished." % opponent.name
             get_back(rn)
         elif attacker._type == 'NPC' and attacker.life <= 0:
-            print "%s has been vanquished." % (attacker.name)
+            print "%s has been vanquished." % attacker.name
             # adding the drop_item() funciton here.
             drop_item(attacker)
             get_back(rn)
         elif attacker._type == 'NPC' and opponent.life <= 0:
-            reason = "%s: You have died in battle. You'll be remembered in Valhalla, but most likely nowhere else." % (attacker.name)
+            reason = "%s: You have died in battle. You'll be remembered in Valhalla, but most likely nowhere else." % attacker.name
             dead(reason)
 
 
@@ -89,7 +89,7 @@ def get_back(rn):
     if rn == -1:
         restart()
     elif rn == 0:
-        restart
+        restart()
     elif rn == 1:
         entrance()
     elif rn == 2:
