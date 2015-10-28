@@ -6,7 +6,7 @@ As a side note, I did this as part of a [great introductory python course](http:
 
 The initial file `textBasedAdventureGame.py` was working as a very, very basic game after two days... (I think that's not too bad.) I've left it in the current code base just to see what has happened.
 
-### ToDo
+### ToDos
 
 This was an initial proof of concept. It was only half thought out and not fully implemented. 
 
