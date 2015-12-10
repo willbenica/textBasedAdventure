@@ -1,4 +1,9 @@
+## ignore files created during compile
 *.pyc
 *.pyd
 *.pyo
 utilities/
+
+## igonre files from IntelliJ IDEA
+*.iml
+.idea/

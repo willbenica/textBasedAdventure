@@ -6,7 +6,7 @@ class room(object):
     This is the main class for all rooms. There should be common elements contained within this class. These should make it easier to add new rooms.
     """
 
-    def __init__(self, name, rn, enenmyType, numEnemies=0, numDoors=1):
+    def __init__(self, name, rn, enemyType, numEnemies=0, numDoors=1):
         self.name = name
         self.rn = rn
         self.enenmyType = enenmyType
