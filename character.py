@@ -7,7 +7,9 @@ import items
 class Character(object):
     """
     This is the base class for both Player and Non-Player characters, i.e enemies and heroes.
-    To create a character, you need to call the Character class with both a name and a factor to allot the character a certain amount of 'life'. The default factor is 1 and allots 100 life to the Character.
+    To create a character, you need to call the Character class with both a name and a factor
+    to allot the character a certain amount of 'life'.
+    The default factor is 1 and allots 100 life to the Character.
     """
     def __init__(self, name, factor=None):
         # super(Character, self).__init__()
