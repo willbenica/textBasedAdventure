@@ -1,7 +1,7 @@
 # turn the rooms into classes and to contain common elements.
 
 
-class room(object):
+class Room(object):
     """
     This is the main class for all rooms. There should be common elements contained within this class. These should make it easier to add new rooms.
     """
@@ -17,17 +17,26 @@ class room(object):
             print desc
 
         def choose(choice):
-            if choice == 'stats':
+            if choice == 'stats'or choice == 's':
                 stats(rn)
-            elif choice == 'life':
+            elif choice == 'life' or choice == 'l':
                 life(rn)
             elif choice == 'instructions' or choice == 'i':
                 instructos(rn)
             elif choice == 'attack':
                 attack(plyaer, enemy, rn)
+            elif choice == 'search':
+                search(item, rn)
+            else:
+            print "Be more decisive, these are not nice monsters."
+            attack(mh_enemy, player, rn)
+
+
+main_hall = rooms.Room('Main Hall', 2, 'zombie', 1, 2)
 
 
 
+###### This has been converted yet.
 def main_hall():
     rn = 2
     mh_enemy = enemyRooms[2]
